@@ -1,9 +1,241 @@
-body {
-    width: 900px;
-    margin: 0 auto;
-    line-height: 1.5;
+.container {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #343A40;
 }
 
-h1,h2,h3,strong {
-    color: purple;
+header {
+    margin-top: 20px;
+    color: white;
+    line-height: 1.5;
+    font-size: 55px;
+    text-align: center;
+    font-weight: bolder;
+    background-color: #343A40;
+}
+
+.btn {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+h1 {
+    text-align: center;
+    padding: 15px;
+}
+
+.flex-card:hover,
+.flex-card:focus {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+footer {
+    font-size: 20px;
+    text-align: center;
+    border-top-color: #343A40;
+    border-top-style: solid;
+    background-color: #343A40;
+}
+
+footer .btn {
+    margin-top: 0;
+    margin: 20px;
+}
+
+footer .btn-outline-dark {
+    color: #fff;
+    border-color: #fff;
+}
+
+footer .btn-outline-dark:hover,
+footer .btn-outline-dark:focus {
+    transform: scale(1.5);
+    background-color: #fff;
+    color: #343A40;
+}
+
+.date {
+    margin: 20px;
+    padding-bottom: 10px;
+}
+
+.form-check {
+    margin-bottom: 1rem!important;
+    border-bottom-color: lightgrey;
+    border-bottom-style: solid;
+}
+
+.card-header{
+    font-size: 2rem;
+}
+
+.btn.inside {
+   margin: 0;
+   vertical-align: initial;
+   font-size: 1.5rem;
+   float: right;
+}
+
+.title {
+    border-bottom-color: lightgrey;
+    border-bottom-style: dashed;
+}
+
+.list-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 15px;
+    margin-bottom: 0!important;
+}
+
+#list {
+    width: 300px;
+    margin: auto!important;
+    margin-bottom: 30px!important;
+}
+
+#clip {
+    margin-bottom: 15px;
+}
+
+@media (max-width: 575.98px) {
+    #clip-img {
+        width: 100%;
+        padding-bottom: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    
+    .flex-card {
+        margin: auto!important;
+        width: 70%;
+        margin-bottom: 50px!important;
+        height: initial;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0,0,0,.16), 0 1px 3px rgba(0,0,0,.23);
+    }
+    
+    .title,.goal {
+        text-align: center;
+        font-weight: bold;
+        font-size: 28px;
+        padding-bottom: 8px;
+    } 
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    #clip-img {
+        width: 100%;
+        padding-bottom: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    
+    .flex-card {
+        margin: auto!important;
+        width: 70%;
+        margin-bottom: 50px!important;
+        height: initial;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0,0,0,.16), 0 1px 3px rgba(0,0,0,.23);
+    }
+    
+    .title,.goal {
+        text-align: center;
+        font-weight: bold;
+        font-size: 28px;
+        padding-bottom: 8px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    #clip-img {
+        width: 100%;
+        padding-bottom: 5px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .flex-card-container {
+        display: flex;
+    }
+    
+    .flex-card {
+        width: 70%;
+        margin: 15px!important;
+        margin-top:0!important;
+        margin-bottom: 25px!important;
+        height: initial;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0,0,0,.16), 0 1px 3px rgba(0,0,0,.23);
+    }
+    
+    .title,.goal {
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        padding-bottom: 5px;
+    } 
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    #clip-img {
+        width: 100%;
+        padding-bottom: 5px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .flex-card-container {
+        display: flex;
+    }
+    
+    .flex-card {
+        width: 70%;
+        margin: 15px!important;
+        margin-top:0!important;
+        margin-bottom: 25px!important;
+        height: initial;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0,0,0,.16), 0 1px 3px rgba(0,0,0,.23);
+    }
+    
+    .title,.goal {
+        text-align: center;
+        font-weight: bold;
+        font-size: 25px;
+        padding-bottom: 5px;
+    } 
+}
+
+@media (min-width: 1200px) { 
+    #clip-img {
+        width: 100%;
+        padding-bottom: 5px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .flex-card-container {
+        display: flex;
+    }
+    
+    .flex-card {
+        width: 70%;
+        margin: 15px!important;
+        margin-top:0!important;
+        margin-bottom: 25px!important;
+        height: initial;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0,0,0,.16), 0 1px 3px rgba(0,0,0,.23);
+    }
+    
+    .title,.goal {
+        text-align: center;
+        font-weight: bold;
+        font-size: 25px;
+        padding-bottom: 5px;
+    }
 }
