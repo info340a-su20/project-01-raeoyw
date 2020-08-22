@@ -81,6 +81,10 @@ footer .btn-outline-dark:focus {
     border-bottom-style: dashed;
 }
 
+#list.clip {
+    margin-top: 30px!important;
+}
+
 .list-container {
     width: 100%;
     display: flex;
@@ -94,10 +98,6 @@ footer .btn-outline-dark:focus {
     width: 300px;
     margin: auto!important;
     margin-bottom: 30px!important;
-}
-
-#clip {
-    margin-bottom: 15px;
 }
 
 @media (max-width: 575.98px) {
@@ -165,7 +165,7 @@ footer .btn-outline-dark:focus {
     .flex-card {
         width: 70%;
         margin: 15px!important;
-        margin-top:0!important;
+        margin-top: 0!important;
         margin-bottom: 25px!important;
         height: initial;
         border-radius: 10px;
@@ -195,7 +195,7 @@ footer .btn-outline-dark:focus {
     .flex-card {
         width: 70%;
         margin: 15px!important;
-        margin-top:0!important;
+        margin-top: 0!important;
         margin-bottom: 25px!important;
         height: initial;
         border-radius: 10px;
@@ -225,7 +225,7 @@ footer .btn-outline-dark:focus {
     .flex-card {
         width: 70%;
         margin: 15px!important;
-        margin-top:0!important;
+        margin-top: 0!important;
         margin-bottom: 25px!important;
         height: initial;
         border-radius: 10px;
@@ -238,4 +238,26 @@ footer .btn-outline-dark:focus {
         font-size: 25px;
         padding-bottom: 5px;
     }
+}
+
+.addClip {
+    display: none;
+    width: 30%;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+    margin-top: 130px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.16), 0 1px 3px rgba(0,0,0,.23);
+}
+
+h2 {
+    padding: 15px;
+    margin: 83px;
+}
+
+input {
+    width: 80%!important;
+    margin: 0 auto!important;
 }
