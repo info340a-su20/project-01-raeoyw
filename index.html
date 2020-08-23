@@ -11,10 +11,13 @@
         <title>Keep The Life</title>
     </head>
     <body class="container">
-        <div class="d-flex justify-content-center">
+        <header>
+            KEEP THE LIFE
+        </header>
+        <div class="d-flex justify-content-center clipBut">
             <button type="button" class="btn btn-outline-dark add">+ Clip</button>
-            <div class="addClip">
-                <form class="form-container" method="Get" action="/data/data.json">
+            <div class="popUp">
+                <form class="form-container">
                     <h2>CREATE NEW CLIP</h2>
                     <div class="form-group">
                         <label for="new-clip-name" class="font-weight-bold">
@@ -23,48 +26,44 @@
                         <input type="text" class="form-control" id="new-clip-name">
                     </div>
                     <div class="form-group">
-                        <label for="new-clip-cover" class="font-weight-bold">
-                            Clip Cover
-                        </label>
-                        <br>
-                        <input type="file" id="new-clip-cover" accept="image/*">
-                    </div>
-                    <div class="form-group">
                         <label for="new-clip-time" class="font-weight-bold">
                             Clip Time Range
                         </label>
                         <input type="text" class="form-control" id="new-clip-time">
                     </div>
+                    <button type="button" class="btn btn-secondary cancel">Cancel</button>
                     <button type="submit" class="btn btn-primary submit">Submit</button>
                 </form>
             </div>
-            <button type="button" class="btn btn-outline-dark delete">- Clip</button>
+            <button type="button" class="btn btn-outline-dark delete" data-toggle="dropdown">- Clip</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+            </div>
         </div>
-        <header>
-            KEEP THE LIFE
-        </header>
-        <div class="justify-content-center">
-            <div class="container">
-                <div class="list-container">
-                    <div id="list" class="flex-card clip">
-                        <!-- <a href="march1.html">
-                            <img id="clip-img" src="img/healthyfood.jpg">
-                        </a> -->
-                        <div class="card-content">
-                            <div class="card-text">
-                                <div class="title">3.22. ~ 3.31.</div>
-                                <div class="goal">Cook Healthy</div>
+        <div class="justify-content-center whole">
+            <div class="container clip">
+                <div class="clip-container">
+                    <!-- <div class="popUp image">
+                        <form class="form-container">
+                            <div class="form-group">
+                                <label for="new-clip-cover" class="font-weight-bold">
+                                    Clip Cover
+                                </label>
+                                <br>
+                                <input type="file" id="new-clip-cover" accept="image/*">
                             </div>
-                        </div>
-                    </div>
+                            <button type="button" class="btn btn-secondary cancel">Cancel</button>
+                            <button type="submit" class="btn btn-primary submit">Submit</button>
+                        </form>
+                    </div> -->
                 </div>
             </div>
         </div>
         </div>
         <footer>
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-outline-dark">About</button>
-                <button type="button" class="btn btn-outline-dark">Author</button>
+                <a href="about.html">
+                    <button type="button" class="btn btn-outline-dark">About | Contact</button>
+                </a>
             </div>
         </footer>
         <script src="js/index.js"></script>

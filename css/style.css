@@ -1,6 +1,6 @@
 .container {
     font-family: 'IBM Plex Sans', sans-serif;
-    color: #343A40;
+    color: #F88E47;
 }
 
 header {
@@ -10,7 +10,7 @@ header {
     font-size: 55px;
     text-align: center;
     font-weight: bolder;
-    background-color: #343A40;
+    background-color: #F88E47;
 }
 
 .btn {
@@ -32,9 +32,9 @@ h1 {
 footer {
     font-size: 20px;
     text-align: center;
-    border-top-color: #343A40;
+    border-top-color: #F88E47;
     border-top-style: solid;
-    background-color: #343A40;
+    background-color: #F88E47;
 }
 
 footer .btn {
@@ -51,10 +51,10 @@ footer .btn-outline-dark:hover,
 footer .btn-outline-dark:focus {
     transform: scale(1.5);
     background-color: #fff;
-    color: #343A40;
+    color: #F88E47;
 }
 
-.date {
+.listItem {
     margin: 20px;
     padding-bottom: 10px;
 }
@@ -83,6 +83,15 @@ footer .btn-outline-dark:focus {
 
 #list.clip {
     margin-top: 30px!important;
+}
+
+.clip-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 15px;
+    margin-bottom: 0!important;
 }
 
 .list-container {
@@ -240,7 +249,7 @@ footer .btn-outline-dark:focus {
     }
 }
 
-.addClip {
+.popUp {
     display: none;
     width: 30%;
     position: absolute;
@@ -260,4 +269,17 @@ h2 {
 input {
     width: 80%!important;
     margin: 0 auto!important;
+}
+
+.image {
+    display: none;
+    position: fixed;
+}
+
+p {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 20px!important;
+    margin-bottom: 30px!important;
+    width: 80%;
 }

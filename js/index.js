@@ -6,46 +6,90 @@ fetch('/data/data.json')
     })
     .then((json) => {
         let data = json;
-        console.log(data.clipName);
-        let newClip = document.createElement('div');
-        newClip.setAttribute('id', 'list');
-        newClip.classList.add('flex-card');
-        newClip.classList.add('clip');
 
-        let newContent = document.createElement('div');
-        newContent.classList.add('card-content');
+        // create clip based on the data
+        for(let i = 0; i < data.clips.length; i++) {
+            let clipInfo = data.clips[i];
+            createNewClip(clipInfo);
+            createDropdownItem(clipInfo.clipName);
+        }
 
-        let newText = document.createElement('div');
-        newText.classList.add('card-text');
+        // delete clip
+        let deleteItem = document.querySelectorAll('.dropdown-item');
+        deleteItem.forEach(function(e) {
+            e.addEventListener('click', function() {
+                let clipAll = document.querySelectorAll('.clip');
+                for(let i = 0; i < clipAll.length; i++) {
+                    if(clipAll[i].innerText.includes(e.innerText)) {
+                        clipAll[i].remove();
+                        deleteItem[i].remove();
+                    }
+                }
+            })
+        })
 
-        let newTitle = document.createElement('div');
-        newTitle.classList.add('title');
-        newTitle.innerHTML = data.clipName
+        // change page
+        let clipAll = document.querySelectorAll('.clip');
+        clipAll.forEach(function(e){
+            e.onclick = function() {
 
-        let newGoal = document.createElement('div');
-        newGoal.classList.add('goal');
-        newGoal.innerHTML = data.clipTimeRange;
-
-        clipContainer.append(newClip);
-        newClip.append(newContent);
-        newContent.append(newText);
-        newText.append(newTitle);
-        newText.append(newGoal);
+                fetch('/data/data.json')
+                .then((response) => {
+                    return response.json();
+                })
+                .then((json) => {
+                    let data = json;
+                    
+                    let text = e.innerText;
+                    if(text.includes('Workout')) {
+                        data = data.lists[0].workout;
+                        listPage(data);
+                    } else if(text.includes('Read')) {
+                        data = data.lists[1].read;
+                        listPage(data);
+                    } else if(text.includes('Grandma')) {
+                        data = data.lists[2].grandma;
+                        listPage(data);
+                    } else if(text.includes('Modern')) {
+                        data = data.lists[3].modern;
+                        listPage(data);
+                    } else if(text.includes('Cook')) {
+                        data = data.lists[4].cook;
+                        listPage(data);
+                    } else if(text.includes('School')) {
+                        data = data.lists[5].schoolwork;
+                        listPage(data);
+                    } else if(text.includes('Guitar')) {
+                        data = data.lists[6].guitar;
+                        listPage(data);
+                    }
+                })
+                .catch((err) => {
+                    console.error(err);
+                })
+            }
+        })
     })
     .catch((err) => {
         console.error(err);
     })
 
-// Show Create Clip Console
+// show create clip console
 let addClipButton = document.querySelector('.add');
 addClipButton.addEventListener('click', function() {
-    document.querySelector('.addClip').style.display = "flex";
-    document.querySelector('body').style.backgroundColor = "grey";
+    document.querySelector('.popUp').style.display = 'flex';
+    document.querySelector('body').style.backgroundColor = 'grey';
 })
 
-// Create New Clip
-let clips = [];
-let clipContainer = document.querySelector('.list-container');
+// close create clip console
+let closePopup = document.querySelector('.cancel');
+closePopup.addEventListener('click', function() {
+    document.querySelector('.popUp').style.display = 'none';
+    document.querySelector('body').style.backgroundColor = 'white';
+})
+
+// create new clip
+let clipContainer = document.querySelector('.clip-container');
 let createClip = document.querySelector('form');
 createClip.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -53,20 +97,35 @@ createClip.addEventListener('submit', function(event) {
     let clipName = document.getElementById('new-clip-name').value;
     let clipTimeRange = document.getElementById('new-clip-time').value;
 
-    let clip = {
-        clipName: clipName,
-        clipTimeRange: clipTimeRange
+    let clipInfo = {
+        'clipName': clipName,
+        'clipTimeRange': clipTimeRange,
+        'clipCoverSrc': 'img/placeholder.jpeg'
     }
-    clips.push(clip);
-    document.forms[0].reset();
 
-    clips = JSON.stringify(clips);
+    createNewClip(clipInfo);
+    createDropdownItem(clipInfo.clipName);
 
-    // Create new clip based on the user input
+    document.forms[0].reset(); 
+
+    document.querySelector('.popUp').style.display = 'none';
+    document.querySelector('body').style.backgroundColor = 'white';
+})
+
+
+// functions
+
+// create new clip based on the user input
+function createNewClip(data) {
     let newClip = document.createElement('div');
     newClip.setAttribute('id', 'list');
     newClip.classList.add('flex-card');
     newClip.classList.add('clip');
+
+    let newCover = document.createElement('img');
+    newCover.setAttribute('id', 'clip-img');
+    newCover.classList.add('clip-img');
+    newCover.src = data.clipCoverSrc;
 
     let newContent = document.createElement('div');
     newContent.classList.add('card-content');
@@ -76,20 +135,123 @@ createClip.addEventListener('submit', function(event) {
 
     let newTitle = document.createElement('div');
     newTitle.classList.add('title');
-    newTitle.innerHTML = clipTimeRange
+    newTitle.innerHTML = data.clipTimeRange;
 
     let newGoal = document.createElement('div');
     newGoal.classList.add('goal');
-    newGoal.innerHTML = clipName;
+    newGoal.innerHTML = data.clipName;
+
+    // let changeImgBut = document.createElement('button');
+    // changeImgBut.setAttribute('type', 'button');
+    // changeImgBut.classList.add('btn');
+    // changeImgBut.classList.add('btn-outline-dark');
+    // changeImgBut.classList.add('changeCover');
+    // changeImgBut.innerText = 'Change Cover';
 
     clipContainer.append(newClip);
+    newClip.append(newCover);
     newClip.append(newContent);
+    // newContent.append(changeImgBut);
     newContent.append(newText);
     newText.append(newTitle);
     newText.append(newGoal);
+}
 
-    document.querySelector('.addClip').style.display = "none";
-    document.querySelector('body').style.backgroundColor = "white";
-})
+// create new dropdown item
+function createDropdownItem(clipName) {
+    let item = document.createElement('button');
+    item.classList.add('dropdown-item');
+    item.setAttribute('type', 'button');
+    item.innerText = clipName;
 
-// Create New Clip
+    document.querySelector('.dropdown-menu').append(item);
+}
+
+// create list page
+function listPage(data) {
+    let clip = document.querySelector('.clip-container')
+    clip.remove();
+    let clipBut = document.querySelector('.clipBut')
+    clipBut.remove();
+
+    let body = document.querySelector('.whole');
+
+    let returnHome = document.createElement('div');
+    returnHome.classList.add('d-flex', 'justify-content-center');
+    body.append(returnHome);
+
+    let backLink = document.createElement('a');
+    backLink.href = 'index.html';
+    returnHome.append(backLink);
+
+    let butReturn = document.createElement('button');
+    butReturn.setAttribute('type', 'button');
+    butReturn.classList.add('btn', 'btn-outline-dark');
+    butReturn.innerText =  'Return Home';
+    backLink.append(butReturn);
+
+    let justify = document.createElement('div');
+    justify.classList.add('justify-content-center');
+    body.append(justify);
+
+    let innerContainer = document.createElement('div');
+    innerContainer.classList.add('container');
+    justify.append(innerContainer);
+
+    let butGroup = document.createElement('div');
+    butGroup.classList.add('d-flex', 'justify-content-center');
+    innerContainer.append(butGroup);
+
+    // let addBut = document.createElement('button');
+    // addBut.setAttribute('type', 'button');
+    // addBut.classList.add('btn', 'btn-outline-dark');
+    // addBut.innerText = '+ List';
+    // butGroup.append(addBut);
+
+    // let deleteBut = document.createElement('button');
+    // deleteBut.setAttribute('type', 'button');
+    // deleteBut.classList.add('btn', 'btn-outline-dark');
+    // deleteBut.innerText = '- List';
+    // butGroup.append(deleteBut);
+
+    let listContainer = document.createElement('div');
+    listContainer.classList.add('list-container');
+    innerContainer.append(listContainer);
+
+    for(let i = 0; i < data.length; i++) {
+        let list = document.createElement('div');
+        list.setAttribute('id', 'list');
+        list.classList.add('flex-card');
+        listContainer.append(list);
+
+        let header = document.createElement('div');
+        header.classList.add('card-header');
+        header.innerText = data[i].listName;
+        list.append(header);
+
+        let item = document.createElement('div');
+        item.classList.add('container', 'listItem');
+        item.classList.add('listItem');
+        list.append(item);
+
+        let check = document.createElement('div');
+        check.classList.add('form-check');
+        item.append(check);
+
+        let input = document.createElement('input');
+        input.classList.add('form-check-input');
+        input.setAttribute('type', 'checkbox');
+        input.setAttribute('value', '');
+        input.setAttribute('id', 'defaultCheck1');
+        check.append(input);
+
+        for(let j = 0; j < data[i].listItem.length; j++) {
+            let label = document.createElement('label');
+            label.classList.add('form-check-label');
+            label.setAttribute('for', 'defaultCheck1');
+            label.innerText = data[i].listItem[j];
+            console.log(data[i].listItem[j]);
+            check.append(label);
+        }
+    }
+}

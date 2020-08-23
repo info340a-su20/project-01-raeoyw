@@ -1,4 +1,114 @@
 {
-    "clipName": "Workout",
-    "clipTimeRange": "7 days"
-}
+    "clips":[
+    {
+        "clipName": "Go Workout",
+        "clipTimeRange": "15 days",
+        "clipCoverSrc": "img/workout.jpg"
+    },{
+        "clipName": "Read Stoner",
+        "clipTimeRange": "One Week",
+        "clipCoverSrc": "img/stoner.jpg"
+    },{
+        "clipName": "Facetime with Grandma",
+        "clipTimeRange": "Everyday Afternoon",
+        "clipCoverSrc": "img/grandma.jpg"
+    },{
+        "clipName": "Watch Modern Family",
+        "clipTimeRange": "During Meal Time",
+        "clipCoverSrc": "img/modernFam.jpg"
+    },{
+        "clipName": "Go Workout2",
+        "clipTimeRange": "15 days",
+        "clipCoverSrc": "img/workout.jpg"
+    },{
+        "clipName": "Cook Myself",
+        "clipTimeRange": "15 days",
+        "clipCoverSrc": "img/cook.jpg"
+    },{
+        "clipName": "Cook Healthy",
+        "clipTimeRange": "7 days",
+        "clipCoverSrc": "img/healthyfood.jpg"
+    },{
+        "clipName": "Cook Healthy2",
+        "clipTimeRange": "7 days",
+        "clipCoverSrc": "img/healthyfood.jpg"
+    },{
+        "clipName": "Maintain the School Work",
+        "clipTimeRange": "June ~ August",
+        "clipCoverSrc": "img/assignment.jpeg"
+    },{
+        "clipName": "Practice Guitar",
+        "clipTimeRange": "July",
+        "clipCoverSrc": "img/guitar.jpg"
+    },{
+        "clipName": "Practice Guitar",
+        "clipTimeRange": "September",
+        "clipCoverSrc": "img/guitar.jpg"
+    }
+],
+    "lists": [
+        {
+            "workout":
+            [{
+                "listName": "First Day",
+                "listItem": "Jogging 30mins"
+            },{
+                "listName": "Second Day",
+                "listItem": "Jogging 20mins"
+            }]
+        },{
+            "read":
+            [{
+                "listName": "Monday",
+                "listItem": "page1 ~ 100"
+            },{
+                "listName": "Tuesday",
+                "listItem": "page100 ~ 150"
+            }]
+        },{
+            "grandma":
+            [{
+                "listName": "7.5",
+                "listItem": "done"
+            },{
+                "listName": "7.6",
+                "listItem": "done"
+            }]
+        },{
+            "modern":
+            [{
+                "listName": "7.6",
+                "listItem": "Ep1, 2"
+            },{
+                "listName": "7.7",
+                "listItem":"Ep14, 23"
+            }]
+        },{
+            "cook":
+            [{
+                "listName": "First Day",
+                "listItem": "lunch"
+            },{
+                "listName": "Second Day",
+                "listItem": "lunch"
+            }]
+        },{
+            "schoolwork":
+            [{
+                "listName": "7.15",
+                "listItem": "COM 200 reflection2"
+            },{
+                "listName": "7.34",
+                "listItem": "EDUC402 essay"
+            }]
+        },{
+            "guitar":
+            [{
+                "listName": "9.5",
+                "listItem": "practice My Plugin Baby"
+            },{
+                "listName":"9.15",
+                "listItem": "practice 1hr"
+            }]
+        }
+]}
