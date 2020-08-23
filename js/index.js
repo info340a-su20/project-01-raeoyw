@@ -18,10 +18,10 @@ fetch('/data/data.json')
         let deleteItem = document.querySelectorAll('.dropdown-item');
         deleteItem.forEach(function(e) {
             e.addEventListener('click', function() {
-                let clipAll = document.querySelectorAll('.clip');
+                let clipAll = document.querySelectorAll('.single');
                 for(let i = 0; i < clipAll.length; i++) {
                     if(clipAll[i].innerText.includes(e.innerText)) {
-                        clipAll[i].remove();
+                        clipAll[i].remove()
                         deleteItem[i].remove();
                     }
                 }
@@ -39,6 +39,9 @@ fetch('/data/data.json')
                 })
                 .then((json) => {
                     let data = json;
+
+                    let clip = document.querySelector('.clip-container')
+                    clip.style.display = "none";
                     
                     let text = e.innerText;
                     if(text.includes('Workout')) {
@@ -63,6 +66,31 @@ fetch('/data/data.json')
                         data = data.lists[6].guitar;
                         listPage(data);
                     }
+                    // } else {
+                    //     data = data.lists[7].new;
+                    //     listPage(data);
+                    // } 
+
+                    // accepte new list
+                    let createList = document.querySelector('#listForm');
+                    createList.addEventListener('submit', function(event) {
+                        event.preventDefault();
+
+                        let listName = document.getElementById('new-list-name').value;
+                        let listItem = document.getElementById('new-list-item').value;
+
+                        let listInfo = {
+                            'listName': listName,
+                            'listItem': listItem
+                        }
+
+                        createNewList(listInfo);
+
+                        document.forms[0].reset(); 
+
+                        document.querySelector('.popUp').style.display = 'none';
+                        document.querySelector('body').style.backgroundColor = 'white';
+                    })
                 })
                 .catch((err) => {
                     console.error(err);
@@ -88,7 +116,7 @@ closePopup.addEventListener('click', function() {
     document.querySelector('body').style.backgroundColor = 'white';
 })
 
-// create new clip
+// accept new clip
 let clipContainer = document.querySelector('.clip-container');
 let createClip = document.querySelector('form');
 createClip.addEventListener('submit', function(event) {
@@ -106,6 +134,8 @@ createClip.addEventListener('submit', function(event) {
     createNewClip(clipInfo);
     createDropdownItem(clipInfo.clipName);
 
+    // newList(clipInfo);
+
     document.forms[0].reset(); 
 
     document.querySelector('.popUp').style.display = 'none';
@@ -121,6 +151,7 @@ function createNewClip(data) {
     newClip.setAttribute('id', 'list');
     newClip.classList.add('flex-card');
     newClip.classList.add('clip');
+    newClip.classList.add('single');
 
     let newCover = document.createElement('img');
     newCover.setAttribute('id', 'clip-img');
@@ -169,26 +200,45 @@ function createDropdownItem(clipName) {
 
 // create list page
 function listPage(data) {
-    let clip = document.querySelector('.clip-container')
-    clip.remove();
-    let clipBut = document.querySelector('.clipBut')
-    clipBut.remove();
-
     let body = document.querySelector('.whole');
 
-    let returnHome = document.createElement('div');
-    returnHome.classList.add('d-flex', 'justify-content-center');
-    body.append(returnHome);
+    let bts = document.createElement('div');
+    bts.classList.add('d-flex', 'justify-content-center');
+    body.append(bts);
 
     let backLink = document.createElement('a');
     backLink.href = 'index.html';
-    returnHome.append(backLink);
+    bts.append(backLink);
 
     let butReturn = document.createElement('button');
     butReturn.setAttribute('type', 'button');
     butReturn.classList.add('btn', 'btn-outline-dark');
-    butReturn.innerText =  'Return Home';
+    butReturn.innerText = 'Back To Clip';
     backLink.append(butReturn);
+
+    let addClip = document.querySelector('.add');
+    addClip.innerText = "+ List";    
+
+    let deleteClip = document.querySelector('.delete');
+    deleteClip.style.display = "none";
+
+    let h2 = document.querySelector('h2');
+    h2.innerText = "CREATE NEW LIST";
+
+    let name = document.querySelector('#name');
+    name.innerText = "List Name";
+
+    let item = document.querySelector('#item');
+    item.innerText = "List Item";
+
+    let formChange = document.querySelector('form');
+    formChange.setAttribute('id', 'listForm');
+
+    let inputChange = document.querySelector('#new-clip-name');
+    inputChange.setAttribute('id', 'new-list-name');
+
+    let inputChange2 = document.querySelector('#new-clip-time');
+    inputChange2.setAttribute('id', 'new-list-item');
 
     let justify = document.createElement('div');
     justify.classList.add('justify-content-center');
@@ -250,8 +300,46 @@ function listPage(data) {
             label.classList.add('form-check-label');
             label.setAttribute('for', 'defaultCheck1');
             label.innerText = data[i].listItem[j];
-            console.log(data[i].listItem[j]);
             check.append(label);
         }
     }
+}
+
+// create new list
+function createNewList(data) {
+    let listContainer = document.createElement('div');
+    listContainer.classList.add('list-container');
+    innerContainer.append(listContainer);
+
+    let list = document.createElement('div');
+    list.setAttribute('id', 'list');
+    list.classList.add('flex-card');
+    listContainer.append(list);
+
+    let header = document.createElement('div');
+    header.classList.add('card-header');
+    header.innerText = data.listName;
+    list.append(header);
+
+    let item = document.createElement('div');
+    item.classList.add('container', 'listItem');
+    item.classList.add('listItem');
+    list.append(item);
+
+    let check = document.createElement('div');
+    check.classList.add('form-check');
+    item.append(check);
+
+    let input = document.createElement('input');
+    input.classList.add('form-check-input');
+    input.setAttribute('type', 'checkbox');
+    input.setAttribute('value', '');
+    input.setAttribute('id', 'defaultCheck1');
+    check.append(input);
+
+    let label = document.createElement('label');
+    label.classList.add('form-check-label');
+    label.setAttribute('for', 'defaultCheck1');
+    label.innerText = data.listItem;
+    check.append(label);
 }
