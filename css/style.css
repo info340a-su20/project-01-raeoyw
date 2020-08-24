@@ -48,10 +48,12 @@ footer .btn-outline-dark {
 }
 
 footer .btn-outline-dark:hover,
-footer .btn-outline-dark:focus {
+footer .btn-outline-dark:focus,
+footer .btn-outline-dark:active {
     transform: scale(1.5);
     background-color: #fff;
     color: #F88E47;
+    border-color: #fff;
 }
 
 .listItem {
@@ -251,24 +253,20 @@ footer .btn-outline-dark:focus {
 
 .popUp {
     display: none;
-    width: 30%;
-    position: absolute;
+    width: 350px;
+    position: fixed;
     text-align: center;
     z-index: 1;
     margin-top: 130px;
     background: white;
+    border: white;
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0,0,0,.16), 0 1px 3px rgba(0,0,0,.23);
 }
 
 h2 {
-    padding: 15px;
-    margin: 83px;
-}
-
-input {
-    width: 80%!important;
-    margin: 0 auto!important;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .image {
@@ -282,4 +280,35 @@ p {
     margin-top: 20px!important;
     margin-bottom: 30px!important;
     width: 80%;
+    font-size: 20px;
+}
+
+.form-container {
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#defaultCheck1 {
+    margin-left: 0;
+}
+
+#body.btn.btn-outline-dark {
+    color: #F88E47;
+    border-color: #F88E47;
+}
+
+#body.btn.btn-outline-dark:hover {
+    color: #fff;
+    background-color: #F88E47;
+    border-color: #F88E47;
+}
+
+.dropdown-item {
+    color: #F88E47!important;
+}
+
+.dropdown-item:hover {
+    color: #fff!important;
+    background-color: #F88E47!important;
 }

@@ -1,6 +1,8 @@
 'use strict'
 
-fetch('/data/data.json')
+let URL = 'https://info340a-su20.github.io/project-01-raeoyw/data/data.json'
+
+fetch(URL)
     .then((response) => {
         return response.json();
     })
@@ -33,7 +35,7 @@ fetch('/data/data.json')
         clipAll.forEach(function(e){
             e.onclick = function() {
 
-                fetch('/data/data.json')
+                fetch(URL)
                 .then((response) => {
                     return response.json();
                 })
@@ -41,7 +43,7 @@ fetch('/data/data.json')
                     let data = json;
 
                     let clip = document.querySelector('.clip-container')
-                    clip.style.display = "none";
+                    clip.style.display = 'none';
                     
                     let text = e.innerText;
                     if(text.includes('Workout')) {
@@ -66,31 +68,34 @@ fetch('/data/data.json')
                         data = data.lists[6].guitar;
                         listPage(data);
                     }
-                    // } else {
-                    //     data = data.lists[7].new;
-                    //     listPage(data);
-                    // } 
 
-                    // accepte new list
-                    let createList = document.querySelector('#listForm');
-                    createList.addEventListener('submit', function(event) {
-                        event.preventDefault();
-
-                        let listName = document.getElementById('new-list-name').value;
-                        let listItem = document.getElementById('new-list-item').value;
-
-                        let listInfo = {
-                            'listName': listName,
-                            'listItem': listItem
-                        }
-
-                        createNewList(listInfo);
-
-                        document.forms[0].reset(); 
-
-                        document.querySelector('.popUp').style.display = 'none';
-                        document.querySelector('body').style.backgroundColor = 'white';
+                    let crossList = document.querySelectorAll('.form-check');
+                    crossList.forEach(function(e) {
+                        e.addEventListener('click', function() {
+                            crossList.classList.add('font-strike');
+                        })
                     })
+
+                    // accept new list
+                    // let createList = document.querySelector('#listForm');
+                    // createList.addEventListener('submit', function(event) {
+                    //     event.preventDefault();
+
+                    //     let listName = document.getElementById('new-list-name').value;
+                    //     let listItem = document.getElementById('new-list-item').value;
+
+                    //     let listInfo = {
+                    //         'listName': listName,
+                    //         'listItem': listItem
+                    //     }
+
+                    //     createNewList(listInfo);
+
+                    //     document.forms[0].reset(); 
+
+                    //     document.querySelector('.popUp').style.display = 'none';
+                    //     document.querySelector('body').style.backgroundColor = 'white';
+                    // })
                 })
                 .catch((err) => {
                     console.error(err);
@@ -102,11 +107,11 @@ fetch('/data/data.json')
         console.error(err);
     })
 
+    
 // show create clip console
 let addClipButton = document.querySelector('.add');
 addClipButton.addEventListener('click', function() {
     document.querySelector('.popUp').style.display = 'flex';
-    document.querySelector('body').style.backgroundColor = 'grey';
 })
 
 // close create clip console
@@ -212,24 +217,25 @@ function listPage(data) {
 
     let butReturn = document.createElement('button');
     butReturn.setAttribute('type', 'button');
+    butReturn.setAttribute('id', 'body');
     butReturn.classList.add('btn', 'btn-outline-dark');
     butReturn.innerText = 'Back To Clip';
     backLink.append(butReturn);
 
     let addClip = document.querySelector('.add');
-    addClip.innerText = "+ List";    
+    addClip.innerText = '+ List';    
 
     let deleteClip = document.querySelector('.delete');
-    deleteClip.style.display = "none";
+    deleteClip.style.display = 'none';
 
     let h2 = document.querySelector('h2');
-    h2.innerText = "CREATE NEW LIST";
+    h2.innerText = 'CREATE NEW LIST';
 
     let name = document.querySelector('#name');
-    name.innerText = "List Name";
+    name.innerText = 'List Name';
 
     let item = document.querySelector('#item');
-    item.innerText = "List Item";
+    item.innerText = 'List Item';
 
     let formChange = document.querySelector('form');
     formChange.setAttribute('id', 'listForm');
@@ -251,18 +257,6 @@ function listPage(data) {
     let butGroup = document.createElement('div');
     butGroup.classList.add('d-flex', 'justify-content-center');
     innerContainer.append(butGroup);
-
-    // let addBut = document.createElement('button');
-    // addBut.setAttribute('type', 'button');
-    // addBut.classList.add('btn', 'btn-outline-dark');
-    // addBut.innerText = '+ List';
-    // butGroup.append(addBut);
-
-    // let deleteBut = document.createElement('button');
-    // deleteBut.setAttribute('type', 'button');
-    // deleteBut.classList.add('btn', 'btn-outline-dark');
-    // deleteBut.innerText = '- List';
-    // butGroup.append(deleteBut);
 
     let listContainer = document.createElement('div');
     listContainer.classList.add('list-container');
@@ -287,13 +281,6 @@ function listPage(data) {
         let check = document.createElement('div');
         check.classList.add('form-check');
         item.append(check);
-
-        let input = document.createElement('input');
-        input.classList.add('form-check-input');
-        input.setAttribute('type', 'checkbox');
-        input.setAttribute('value', '');
-        input.setAttribute('id', 'defaultCheck1');
-        check.append(input);
 
         for(let j = 0; j < data[i].listItem.length; j++) {
             let label = document.createElement('label');
@@ -329,13 +316,6 @@ function createNewList(data) {
     let check = document.createElement('div');
     check.classList.add('form-check');
     item.append(check);
-
-    let input = document.createElement('input');
-    input.classList.add('form-check-input');
-    input.setAttribute('type', 'checkbox');
-    input.setAttribute('value', '');
-    input.setAttribute('id', 'defaultCheck1');
-    check.append(input);
 
     let label = document.createElement('label');
     label.classList.add('form-check-label');
